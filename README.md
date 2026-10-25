@@ -71,3 +71,18 @@ vim.keymap.set("n", "<leader>X", "<cmd>Chmod +x<CR>", {
   desc = "Make current file executable"
 })
 ```
+
+## Rationale
+
+To be fair you could actually get away with something like:
+
+```
+set("n", "<leader>X", "<cmd>silent !chmod +x %<CR>", { desc = "Make current file executable" })
+```
+
+You would only be missing out on the error checking and the cute notification,
+as well as the `Chmod` command (which you can call from anywhere with any mode)
+and the Lua API obviously.
+
+That's totally fine too. This whole plugin's purpose is just to add all of that
+fodder.
