@@ -1,46 +1,73 @@
-# chmod.nvim
+# chmod-nvim
 
-Run `chmod` on the current file from Neovim and get a notification confirming the result.
+`chmod` current file from inside Neovim.
+
+## What's included
+
+This sets up the:
+- `Chmod` command
+- a Lua API to effortlessly run `chmod` commands in Neovim
+- a nice notification system which verifies the result of the operation and
+  lets you know
 
 ## Installation
 
 [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
-{ "YOUR_USERNAME/chmod.nvim", cmd = "Chmod" }
+{ "cherrynoize/chmod-nvim", cmd = "Chmod" }
 ```
 
 [packer.nvim](https://github.com/wbthomason/packer.nvim):
 
 ```lua
-use "YOUR_USERNAME/chmod.nvim"
+use "cherrynoize/chmod-nvim"
 ```
 
 Built-in packages (no plugin manager):
 
 ```sh
-git clone https://github.com/YOUR_USERNAME/chmod.nvim \
-  ~/.local/share/nvim/site/pack/plugins/start/chmod.nvim
+git clone git@github.com:cherrynoize/chmod-nvim.git \
+  ~/.local/share/nvim/site/pack/plugins/start/chmod-nvim
 ```
 
-No `setup()` call is needed.
+Just like that.
 
-## Usage
+## Examples
+
+Using the vim command:
 
 ```vim
-:Chmod x      " same as +x
-:Chmod +x
-:Chmod -x
+:Chmod x     " same as +x
+:Chmod +w
+:Chmod -r
 :Chmod 755
 :Chmod u+x
 ```
 
-A bare `x` or `rw` is treated as `+x` / `+rw`. Any mode accepted by `chmod` works.
-
-## Suggested keymap
-
-Add this to your config:
+or through the API:
 
 ```lua
-vim.keymap.set("n", "<leader>X", "<cmd>Chmod +x<CR>", { desc = "Make current file executable" })
+require("chmod").run("+w")                    -- file in current buffer
+require("chmod").run("644", "/path/to/file")  -- specific file
+```
+
+A bare `x` or `rw` is treated as `+x` / `+rw`. Any mode accepted by `chmod` works.
+
+## Configure keymaps
+
+You can add something like this to your Neovim config:
+
+```lua
+vim.keymap.set("n", "<leader>X", function()
+  require("chmod").run("+x")
+end, { desc = "Make current file executable" })
+```
+
+to make the current file executable using a keymap. Or using the command syntax:
+
+```lua
+vim.keymap.set("n", "<leader>X", "<cmd>Chmod +x<CR>", {
+  desc = "Make current file executable"
+})
 ```
