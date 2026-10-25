@@ -54,7 +54,7 @@ require("chmod").run("644", "/path/to/file")  -- specific file
 
 A bare `x` or `rw` is treated as `+x` / `+rw`. Any mode accepted by `chmod` works.
 
-## Configure keymaps
+## Keymaps
 
 You can add something like this to your Neovim config:
 
@@ -81,7 +81,7 @@ set("n", "<leader>X", "<cmd>silent !chmod +x %<CR>", { desc = "Make current file
 ```
 
 You would only be missing out on the error checking and the cute notification,
-as well as the `Chmod` command (which you can call from anywhere with any mode)
+as well as the `Chmod` command (which you can run anytime and for any mode)
 and the Lua API obviously.
 
 That's totally fine too. This whole plugin's purpose is just to add all of that
