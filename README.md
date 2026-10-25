@@ -5,10 +5,10 @@
 ## What's included
 
 This sets up the:
-- `Chmod` command
-- a Lua API to effortlessly run `chmod` commands in Neovim
+- a vim `Chmod` command
+- a Lua API to effortlessly run `chmod` commands
 - a nice notification system which verifies the result of the operation and
-  lets you know
+  lets you know how it went
 
 ## Installation
 
