@@ -86,3 +86,6 @@ and the Lua API obviously.
 
 That's totally fine too. This whole plugin's purpose is just to add all of that
 fodder.
+
+(Also there's an inbuilt vim command I think but you have to type the whole
+permission string so that kind of sucks.)
